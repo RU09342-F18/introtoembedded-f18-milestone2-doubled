@@ -17,11 +17,10 @@ This  program is designed to act as a thermostat. The user interfaces with the s
 The user inputs a desired temperature into the program and is able to read the temperature in real-time.
 Parts
  - 5 V regulator
+ - thermistor
  - 12 V fan
- - 
  - User interface
  - Temperature control
- - 
 
 
 ***************************************************************************************************************************************
@@ -111,11 +110,36 @@ ADC12ISR
 USCI_A1_interrupt
 - Stuff goes here
 
+
+***************************************************************************************************************************************
+INTERNAL FUNCTIONS
+------------------
+
+unsigned char binaryToTemperature(double in)
+- Converts the binary value stored in ADC12MEM0 to an unsigned character that represents the temperature in Celsius
+- first, converts to the corresponding voltage by multiplying the input by the resolution: (5 V) / (4096 bits)
+- next, converts to the corresponding resistance by manipulating the equation of a voltage divider circuit
+- Next, converts the resistance to a temperature
+- temperature varies as a logarithmic function of Resistance according to the Steinhart-Hart equation
+- this equation was converted to a piecewise linear function with 10 segments
+- if, else if statements are set up to determine what segment to use for the conversion
+
+void PIDcontrol()
+- prevError gets the value of error from the previous iteration
+- the value of error is updated to equal target - temp
+- the integral control, I = prevError + error
+- the derivative control, D = prevError - error
+- the proportional control, P = error/target
+- pwm equals TA0CCR1 * P plus a linear combination of D and I
+- pwm is treated for boundary conditions to ensure that the fan PWM does not underflow or overflow
+- TA0CCR1 is assigned the value stored in pwm
+
+
 ***************************************************************************************************************************************
 EXTERNAL CIRCUITRY
 ------------------
 
-Voltage divider circuit
-Low side switch
+Voltage divider circuit with a 15k resistor on the top and a 10k thermistor on the bottom
+Low side switch using the 2N7000 NMOS to protect the processor from drawing current from te
 flyback diode to prevent backwards emf
 
