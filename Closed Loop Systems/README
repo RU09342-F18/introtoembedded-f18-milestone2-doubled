@@ -18,7 +18,7 @@ The user inputs a desired temperature into the program and is able to read the t
 system reads the temperature by interpreting the voltage across the 10k thermistor. Using this information, the program can control a 
 fan with a PWM signal converge on the desired temperature using proportional integral-derivative (PID) control.
 
-The system is accurate with +/-± 3°C 
+The system is accurate within ± 3°C. 
 
 ***************************************************************************************************************************************
 MSP430F5529 DESIGN
@@ -26,9 +26,9 @@ MSP430F5529 DESIGN
 
 In order to execute this program:
 - The MSP430F5529 must be set up properly
-- 
-- UART must be configured and enabled and occur through interrupts as well
-Change this (above)
+- ADC12 must be configured with interrupts enabled
+- UART must be configured with interrupts enabled
+- functions for Binary to temperature conversion and PID control must be present
 
 Global Variables
 - unsigned int q       : used in ADC12ISR to store the value of ADC12MEM0
