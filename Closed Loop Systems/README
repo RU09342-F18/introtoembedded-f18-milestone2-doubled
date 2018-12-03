@@ -1,1 +1,59 @@
-// README goes here
+***THIS README IS NOT FINISHED YET
+
+***************************************************************************************************************************************
+OVERVIEW
+--------
+
+Milestone 2 is a program that uses the MSP430F5529 development board to regulate the temperature of a 5 V regulator by sensing the
+temperature with a thermistor and controlling the speed of a fan to cool the circuit component. The code allows the user to set a desired
+temperature and receive the current temperature in real time. This program uses the target temperature and current temperature to
+automatically control the speed of the fan.
+
+***************************************************************************************************************************************
+SPECIFICATIONS
+--------------
+
+Stuff goes here
+
+***************************************************************************************************************************************
+MSP430F5529 DESIGN
+------------------
+
+In order to execute this program:
+- The MSP430F5529 must be set up properly
+- The PWM must occur through interrupts
+- UART must be configured and enabled and occur through interrupts as well
+Change this (above)
+
+Global Variables
+- stuff
+
+Setup Functions
+- stuff
+
+Interrupt Functions
+- stuff
+
+PID Control
+-
+
+***************************************************************************************************************************************
+INITIALIZATIONS
+---------------
+
+
+
+***************************************************************************************************************************************
+INTERRUPTS
+----------
+
+ADC12ISR
+- Stuff goes here
+- and more stuff
+
+USCI_A1_interrupt
+- Stuff goes here
+
+***************************************************************************************************************************************
+EXTERNAL CIRCUITRY
+------------------
