@@ -26,16 +26,32 @@ In order to execute this program:
 Change this (above)
 
 Global Variables
-- stuff
+- unsigned int q       : used in ADC12ISR to store the value of ADC12MEM0
+- unsigned char target : used in USCI_A1_interrupt and PIDcontrol to track target temperature
+- unsigned char temp   : used in ADC12ISR and PIDcontrol to keep track of current temperature
+- unsigned char Q      : used in ADC12ISR to store the output of binaryToTemperature
+- double prevError     : used in PIDcontrol to calculate D and I for PID control
+- double error         : used in PIDcontrol to calculate closed loop correction
+- unsigned int watch   : used in ADC12ISR to monitor the value of TA0CCR1 for debugging
+- int pwm              : used in PIDcontrol to calculate the PWM of the fan
+- double qin           : used in binaryToTemperature to convert from binary to a temperature
+- double I = 0         : used in PIDcontol to calculate "integral" in PID control
+- double D = 0         : used in PIDcontrol to calculate "derivative" in PID control
+- double P = 0         : used in PIDcontrol to calculate "proportion" in PID control
 
 Setup Functions
-- stuff
+- void ADC12setup()   : configures the ADC12 peripheral
+- void UARTsetup()    : configures UART in order to interface with Realterm
+- void portSetup()    : configures the ports to read the thermistor
+- void timerA0setup() : configures the Timer A0 for the fan PWM
 
 Interrupt Functions
-- stuff
+- void ADC12ISR()          :
+- void USCI_A1_interrupt() :
 
-PID Control
--
+Internal Functions
+- unsigned char binaryToTemperature(double in):  function that converts an ADC12 binary value to temperature
+- void PIDcontrol()                           :  function that controls the fan PWM
 
 ***************************************************************************************************************************************
 INITIALIZATIONS
