@@ -14,7 +14,15 @@ SPECIFICATIONS
 --------------
 
 This  program is designed to act as a thermostat. The user interfaces with the system using a computer application called "Realterm."
-The user inputs a desired temperature, and the 
+The user inputs a desired temperature into the program and is able to read the temperature in real-time.
+Parts
+ - 5 V regulator
+ - 12 V fan
+ - 
+ - User interface
+ - Temperature control
+ - 
+
 
 ***************************************************************************************************************************************
 MSP430F5529 DESIGN
@@ -22,7 +30,7 @@ MSP430F5529 DESIGN
 
 In order to execute this program:
 - The MSP430F5529 must be set up properly
-- The PWM must occur through interrupts
+- 
 - UART must be configured and enabled and occur through interrupts as well
 Change this (above)
 
@@ -58,7 +66,39 @@ Internal Functions
 INITIALIZATIONS
 ---------------
 
+void ADC12setup()
+- ADC12 Control reg 0 on, sampling hold time 64 ADC12clk cycles
+- ADC12 Sampling and hold pulse set to sample input signal single-channel, single conversion
+- ADC12 Mem0 control reg, input channel A0, last conversion in sequence
+- ADC12 enable conversion is set high
+- Start sample and 
+- interrupt enabled
+//CLEAN THAT UP A LITTLE
 
+void UARTsetup()
+- P3.3,4 = USCI_A0 TXD/RXD
+- P4.4,4.5 =USCI_A1 TXD/RXD
+- SMCLK
+- 1MHz, 9600 Baud Rate
+- Modulation UCBRSx=1, UCBRFx=0
+- **Initialize USCI state machine**
+- Enable USCI_A1 RX interrupt
+//CLEAN THIS UP A LITTLE
+
+void portSetup()
+- P6.0 is the port used to interface with the thermistor
+- P6.0 will have a voltage between 0 and 5 volts depending on the temperature
+- P6.0 configured as output by setting Bit 0 of P6SEL high
+- P6.0 configured as input by setting Bit 0 of P6DIR low
+
+void timerA0setup()
+- Timer A Control set to: SMCLK, Up-mode, no internal divider
+- Value stored in Timer A register initialized to zero
+- TimerA0 CCR0  initialized at 255
+- Timer A0 set to reset/set mode
+- configures P1.2 as hardware PWM register
+- output to PWM the fan
+//CLEAN THIS UP A LITTLE
 
 ***************************************************************************************************************************************
 INTERRUPTS
@@ -74,3 +114,8 @@ USCI_A1_interrupt
 ***************************************************************************************************************************************
 EXTERNAL CIRCUITRY
 ------------------
+
+Voltage divider circuit
+Low side switch
+flyback diode to prevent backwards emf
+
