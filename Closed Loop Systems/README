@@ -4,8 +4,8 @@
 OVERVIEW
 --------
 
-Milestone 2 is a program that uses the MSP430F5529 development board to regulate the temperature of a 5 V regulator by sensing the
-temperature with a thermistor and controlling the speed of a fan to cool the circuit component. The code allows the user to set a desired
+Milestone 2 is a program executable on the MSP430F5529 development board that functions as a temperature regulation system. The design
+uses a thermistor temperature sensor, a 5 V regulator (which produces heat), and a 12 V fan. The code allows the user to set a desired
 temperature and receive the current temperature in real time. This program uses the target temperature and current temperature to
 automatically control the speed of the fan.
 
@@ -13,15 +13,12 @@ automatically control the speed of the fan.
 SPECIFICATIONS
 --------------
 
-This  program is designed to act as a thermostat. The user interfaces with the system using a computer application called "Realterm."
-The user inputs a desired temperature into the program and is able to read the temperature in real-time.
-Parts
- - 5 V regulator
- - thermistor
- - 12 V fan
- - User interface
- - Temperature control
+This program is designed to act as a thermostat. The user interfaces with the system using a computer application called "Realterm."
+The user inputs a desired temperature into the program and is able to read the temperature of the 5 V regulator in real-time. The
+system reads the temperature by interpreting the voltage across the 10k thermistor. Using this information, the program can control a 
+fan with a PWM signal converge on the desired temperature using proportional integral-derivative (PID) control.
 
+The system is accurate with +/-± 3°C 
 
 ***************************************************************************************************************************************
 MSP430F5529 DESIGN
