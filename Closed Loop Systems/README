@@ -13,7 +13,8 @@ automatically control the speed of the fan.
 SPECIFICATIONS
 --------------
 
-Stuff goes here
+This  program is designed to act as a thermostat. The user interfaces with the system using a computer application called "Realterm."
+The user inputs a desired temperature, and the 
 
 ***************************************************************************************************************************************
 MSP430F5529 DESIGN
@@ -35,9 +36,9 @@ Global Variables
 - unsigned int watch   : used in ADC12ISR to monitor the value of TA0CCR1 for debugging
 - int pwm              : used in PIDcontrol to calculate the PWM of the fan
 - double qin           : used in binaryToTemperature to convert from binary to a temperature
-- double I = 0         : used in PIDcontol to calculate "integral" in PID control
-- double D = 0         : used in PIDcontrol to calculate "derivative" in PID control
-- double P = 0         : used in PIDcontrol to calculate "proportion" in PID control
+- double I             : used in PIDcontol to calculate "integral" in PID control
+- double D             : used in PIDcontrol to calculate "derivative" in PID control
+- double P             : used in PIDcontrol to calculate "proportion" in PID control
 
 Setup Functions
 - void ADC12setup()   : configures the ADC12 peripheral
