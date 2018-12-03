@@ -26,7 +26,6 @@ unsigned char binaryToTemperature(double in);       // function that converts an
 
 /*----------------GLOBAL VARIABLES----------------*/
 
-P3SEL |= BIT3 + BIT4;                               // P3.3,4 = USCI_A0 TXD/RXD
 unsigned int q;                                     // used in ___ to keep track of ____
 unsigned char target = 60;                          // used in ___ to keep track of ____
 unsigned char temp;                                 // used in ___ to keep track of ____
